@@ -82,7 +82,9 @@ public class Placer : MonoBehaviour
         //var rotatedOurPoint = matrix.MultiplyPoint(ourPoint);
         //var translation = theirPoint - rotatedOurPoint;
         var rotatedLocalVector = matrix.MultiplyVector(ourLocalVector);
-        var targetPosition = theirPoint - rotatedLocalVector;
+        //We need to add the vectors to move to the center point, then to the connection point.
+        var ourCenterOffset = ourCenterPoint - source.position;
+        var targetPosition = theirPoint - (rotatedLocalVector + ourCenterOffset);
         
         return new Tuple<Vector3, Vector3>(rotation.eulerAngles, targetPosition);
         
