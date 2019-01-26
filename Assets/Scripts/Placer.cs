@@ -64,12 +64,14 @@ public class Placer : MonoBehaviour
         //Debug.Log(gameObject.name + " hit a placeable");
         var ourPlaceable = placeablePrefab.GetComponent<Placeable>();
         var theirPoint = target.worldConnectionPoints[targetPoint];
+        var theirCenterPoint = target.worldCenterPoint;
         var ourPoint = ourPlaceable.getConnectionPointInWorld(sourcePoint, source);
+        var ourCenterPoint = ourPlaceable.getCenterPointInWorld(source);
 
         //Getting vectors from the center of the shape to the connection points
         //Rotating to set the vectors to be facing opposite
-        var targetRotationVector = -(theirPoint - target.transform.position);
-        var ourLocalVector = ourPoint - source.position;
+        var targetRotationVector = -(theirPoint - theirCenterPoint);
+        var ourLocalVector = ourPoint - ourCenterPoint;
             
         //var rotationAngle = Vector3.SignedAngle(ourLocalVector, targetRotationVector, new Vector3(0, 0, 1));
         var rotation = Quaternion.FromToRotation(ourLocalVector, targetRotationVector);

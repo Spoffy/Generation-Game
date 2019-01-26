@@ -356,8 +356,14 @@ PrefabInstance:
     - target: {fileID: 8036518051057714657, guid: 9004411aa929f0485bb87c47ab50566f,
         type: 3}
       propertyPath: m_SpriteSortPoint
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8036518051057714657, guid: 9004411aa929f0485bb87c47ab50566f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c0134fcf6ae9f37d8b4db48a4db1e917,
+        type: 3}
     - target: {fileID: 8036518051057714684, guid: 9004411aa929f0485bb87c47ab50566f,
         type: 3}
       propertyPath: localConnectionPoints.Array.size
@@ -374,6 +380,41 @@ PrefabInstance:
       propertyPath: raycastInputCamera
       value: 
       objectReference: {fileID: 235546119}
+    - target: {fileID: 8036518051057714684, guid: 9004411aa929f0485bb87c47ab50566f,
+        type: 3}
+      propertyPath: localConnectionPoints.Array.data[2].y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036518051057714684, guid: 9004411aa929f0485bb87c47ab50566f,
+        type: 3}
+      propertyPath: localConnectionPoints.Array.data[0].x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036518051057714684, guid: 9004411aa929f0485bb87c47ab50566f,
+        type: 3}
+      propertyPath: localConnectionPoints.Array.data[0].y
+      value: -0.067
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036518051057714684, guid: 9004411aa929f0485bb87c47ab50566f,
+        type: 3}
+      propertyPath: localConnectionPoints.Array.data[1].x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036518051057714684, guid: 9004411aa929f0485bb87c47ab50566f,
+        type: 3}
+      propertyPath: localConnectionPoints.Array.data[1].y
+      value: -0.067
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036518051057714684, guid: 9004411aa929f0485bb87c47ab50566f,
+        type: 3}
+      propertyPath: localConnectionPoints.Array.data[2].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036518051057714684, guid: 9004411aa929f0485bb87c47ab50566f,
+        type: 3}
+      propertyPath: centerPoint.y
+      value: -1.11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9004411aa929f0485bb87c47ab50566f, type: 3}
 --- !u!1001 &740786324

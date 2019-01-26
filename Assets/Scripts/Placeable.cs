@@ -6,30 +6,46 @@ using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class Placeable : MonoBehaviour, IDragHandler, IPointerClickHandler
+public class Placeable : MonoBehaviour
 {
     public Camera raycastInputCamera;
-    [FormerlySerializedAs("connectionPoints")] 
+
+    public Vector2 centerPoint;
+
     public List<Vector2> localConnectionPoints = new List<Vector2>();
     public GameObject connectionPointPrefab;
 
-    private bool isDragged = false;
-
-    
     void Start()
     {
+        List<Vector2> newConnectionPoints = new List<Vector2>();
+        Vector3 size = GetComponent<SpriteRenderer>().sprite.bounds.size;
+        foreach (var point in localConnectionPoints)
+        {
+            newConnectionPoints.Add(new Vector2(point.x * size.x, point.y * size.y));
+        }
+
+        localConnectionPoints = newConnectionPoints;
+        centerPoint = new Vector2(centerPoint.x * size.x, centerPoint.y * size.y);
+
+        Debug.Log(GetComponent<SpriteRenderer>().bounds);
         foreach (var connectionPoint in worldConnectionPoints)
         {
             Instantiate(connectionPointPrefab, connectionPoint, Quaternion.identity, transform);
-        } 
+        }
     }
 
     public List<Vector3> worldConnectionPoints
     {
         get
         {
-            return localConnectionPoints.ConvertAll<Vector3>(localPoint => transform.localToWorldMatrix.MultiplyPoint(localPoint));
+            return localConnectionPoints.ConvertAll<Vector3>(localPoint =>
+                transform.localToWorldMatrix.MultiplyPoint(localPoint));
         }
+    }
+
+    public Vector3 worldCenterPoint
+    {
+        get { return transform.localToWorldMatrix.MultiplyPoint(centerPoint); }
     }
 
     public Vector3 getConnectionPointInWorld(int connectionPointIndex, Transform theirTransform)
@@ -37,12 +53,17 @@ public class Placeable : MonoBehaviour, IDragHandler, IPointerClickHandler
         return theirTransform.localToWorldMatrix.MultiplyPoint(localConnectionPoints[connectionPointIndex]);
     }
 
-    public Tuple<Vector3,int> closestPointTo(Vector3 point)
+    public Vector3 getCenterPointInWorld(Transform theirTransform)
+    {
+        return theirTransform.localToWorldMatrix.MultiplyPoint(centerPoint);
+    }
+
+    public Tuple<Vector3, int> closestPointTo(Vector3 point)
     {
         var distance = float.MaxValue;
         var ourPoints = worldConnectionPoints;
         int chosenPointIndex = 0;
-        for(var i = 0; i < ourPoints.Count; i++)
+        for (var i = 0; i < ourPoints.Count; i++)
         {
             var ourPoint = ourPoints[i];
             var distanceSqr = (point - ourPoint).sqrMagnitude;
@@ -54,20 +75,5 @@ public class Placeable : MonoBehaviour, IDragHandler, IPointerClickHandler
         }
 
         return new Tuple<Vector3, int>(ourPoints[chosenPointIndex], chosenPointIndex);
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        isDragged = eventData.dragging;
-        gameObject.GetComponent<Rigidbody2D>().position = raycastInputCamera.ScreenToWorldPoint(eventData.position);
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-    }
-
-    private void OnMouseUp()
-    {
-        isDragged = false;
     }
 }

@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: -1041452711
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 364ca2cfd15c4127b84154fb1537bf50, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c0134fcf6ae9f37d8b4db48a4db1e917, type: 3}
   m_Color: {r: 1, g: 0.31132078, b: 0.31132078, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,8 +98,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.56}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -142,8 +142,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raycastInputCamera: {fileID: 0}
+  centerPoint: {x: 0, y: -0.211}
   localConnectionPoints:
-  - {x: -0.25, y: 0}
-  - {x: 0.25, y: 0}
-  - {x: 0, y: -0.3}
-  connectionPointPrefab: {fileID: 0}
+  - {x: -0.25, y: -0.067}
+  - {x: 0.25, y: -0.067}
+  - {x: 0, y: -0.5}
+  connectionPointPrefab: {fileID: 5654373599425664040, guid: ae5bd9b9858a9ac11ac5d49ada599322,
+    type: 3}
