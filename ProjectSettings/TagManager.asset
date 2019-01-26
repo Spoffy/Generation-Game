@@ -48,3 +48,6 @@ TagManager:
   - name: Connection Points
     uniqueID: 578185243
     locked: 0
+  - name: Crosshair
+    uniqueID: 494011971
+    locked: 0

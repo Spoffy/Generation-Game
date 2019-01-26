@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class Placer : MonoBehaviour, IDragHandler, IPointerClickHandler, IPointerUpHandler
+public class Placer : MonoBehaviour
 {
     public Camera raycastInputCamera;
     public GameObject shadowPlaceablePrefab;
     public GameObject placeablePrefab;
 
-    private bool isDragged = false;
+    public bool IsInPlacementMode = false;
 
     private GameObject __shadowPlaceableInternal;
     
@@ -89,7 +88,7 @@ public class Placer : MonoBehaviour, IDragHandler, IPointerClickHandler, IPointe
 
     private void OnTriggerStay2D(Collider2D theirCollider)
     {
-        if (!isDragged)
+        if (!IsInPlacementMode)
         {
             return;
         }
@@ -116,24 +115,9 @@ public class Placer : MonoBehaviour, IDragHandler, IPointerClickHandler, IPointe
         clearShadowPlaceable();
     }
 
-    public void OnTriggerEnter2D(Collider2D theirCollider)
+    public void place()
     {
-        
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        isDragged = eventData.dragging;
-        gameObject.GetComponent<Rigidbody2D>().position = raycastInputCamera.ScreenToWorldPoint(eventData.position);
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-    }
-    
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        isDragged = false;
+        IsInPlacementMode = false;
         if (isShadowPlaced())
         {
             var shadowPlaceable = getShadowPlaceable();
