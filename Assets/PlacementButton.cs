@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 public class PlacementButton : MonoBehaviour, IDragHandler, IEndDragHandler
 {
+    public GameObject placeablePrefab;
     private Placer placer;
     
     // Start is called before the first frame update
@@ -20,6 +21,7 @@ public class PlacementButton : MonoBehaviour, IDragHandler, IEndDragHandler
     public void OnDrag(PointerEventData eventData)
     {
         placer.IsInPlacementMode = true;
+        placer.placeablePrefab = placeablePrefab;
     }
 
     public void OnEndDrag(PointerEventData eventData)
