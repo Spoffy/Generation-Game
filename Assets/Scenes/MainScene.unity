@@ -285,7 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EventMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 23
   m_MaxRayIntersections: 0
 --- !u!1 &413725996
 GameObject:
@@ -443,11 +443,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8036518051057714684, guid: 9004411aa929f0485bb87c47ab50566f,
-        type: 3}
-      propertyPath: raycastInputCamera
-      value: 
-      objectReference: {fileID: 235546119}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9004411aa929f0485bb87c47ab50566f, type: 3}
 --- !u!1001 &740786324
@@ -955,6 +950,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crosshair
+      objectReference: {fileID: 0}
+    - target: {fileID: 7230124142685068277, guid: 497f8b1868c1f7e509b57bf7f4ac76e4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7230124142685068274, guid: 497f8b1868c1f7e509b57bf7f4ac76e4,
         type: 3}

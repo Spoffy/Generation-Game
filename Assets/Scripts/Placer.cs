@@ -125,7 +125,8 @@ public class Placer : MonoBehaviour
         if (isShadowPlaced())
         {
             var shadowPlaceable = getShadowPlaceable();
-            Instantiate(placeablePrefab, shadowPlaceable.transform.position, shadowPlaceable.transform.rotation);
+            var placedObject = Instantiate(placeablePrefab, shadowPlaceable.transform.position, shadowPlaceable.transform.rotation);
+            placedObject.GetComponent<Placeable>().connect();
         }
     }
 }

@@ -106,7 +106,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.2, y: 1.2}
   m_EdgeRadius: 0
 --- !u!50 &7601243153714223483
 Rigidbody2D:
@@ -141,13 +141,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd4d0b3e360132508106741e1ee3290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raycastInputCamera: {fileID: 0}
+  centerPoint: {x: 0, y: 0}
   localConnectionPoints:
   - {x: 0, y: 0.5}
   - {x: 0.5, y: 0}
   - {x: 0, y: -0.5}
   - {x: -0.5, y: 0}
   connectionPointPrefab: {fileID: 5654373599425664040, guid: ae5bd9b9858a9ac11ac5d49ada599322,
-    type: 3}
-  shadowPlaceablePrefab: {fileID: 2970941979883873134, guid: 24bf8b0c2cb431dcbaab0c83298ccaae,
     type: 3}

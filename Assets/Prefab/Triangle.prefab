@@ -106,7 +106,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
 --- !u!50 &8036518051057714685
 Rigidbody2D:
@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd4d0b3e360132508106741e1ee3290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raycastInputCamera: {fileID: 0}
   centerPoint: {x: 0, y: -0.211}
   localConnectionPoints:
   - {x: -0.25, y: -0.067}

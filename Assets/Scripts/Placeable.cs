@@ -6,14 +6,22 @@ using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class Placeable : MonoBehaviour
+public class Placeable : MonoBehaviour, IPointerDownHandler
 {
-    public Camera raycastInputCamera;
-
     public Vector2 centerPoint;
 
     public List<Vector2> localConnectionPoints = new List<Vector2>();
     public GameObject connectionPointPrefab;
+
+    private Connection?[] connections;
+    private GameObject[] connectionPointObjects;
+
+    private bool shouldConnect = false;
+
+    public Placeable()
+    {
+        
+    }
 
     void Start()
     {
@@ -26,11 +34,22 @@ public class Placeable : MonoBehaviour
 
         localConnectionPoints = newConnectionPoints;
         centerPoint = new Vector2(centerPoint.x * size.x, centerPoint.y * size.y);
+        connections = new Connection?[localConnectionPoints.Count];
+        connectionPointObjects = new GameObject[localConnectionPoints.Count];
 
         Debug.Log(GetComponent<SpriteRenderer>().bounds);
-        foreach (var connectionPoint in worldConnectionPoints)
+        var connectionPoints = worldConnectionPoints;
+        for(var i = 0; i < connectionPoints.Count; i++) 
         {
-            Instantiate(connectionPointPrefab, connectionPoint, Quaternion.identity, transform);
+            connectionPointObjects[i] = Instantiate(connectionPointPrefab, connectionPoints[i], Quaternion.identity, transform);
+        }
+    }
+
+    void Update()
+    {
+        if (shouldConnect)
+        {
+            findAndConnect();
         }
     }
 
@@ -38,7 +57,7 @@ public class Placeable : MonoBehaviour
     {
         get
         {
-            return localConnectionPoints.ConvertAll<Vector3>(localPoint =>
+            return localConnectionPoints.ConvertAll(localPoint =>
                 transform.localToWorldMatrix.MultiplyPoint(localPoint));
         }
     }
@@ -75,5 +94,104 @@ public class Placeable : MonoBehaviour
         }
 
         return new Tuple<Vector3, int>(ourPoints[chosenPointIndex], chosenPointIndex);
+    }
+
+    public void connect()
+    {
+        shouldConnect = true;
+    }
+
+    private void findAndConnect()
+    {
+        shouldConnect = false;
+        
+        var collider = GetComponent<Collider2D>();
+        var candidates = new Collider2D[10];
+        var filter = new ContactFilter2D();
+        filter.useTriggers = true;
+        var numCandidates = collider.OverlapCollider(filter, candidates);
+        
+        Debug.Log("Found " + numCandidates + " candidates");
+
+        // Distance = 1 + distance to make sure it's > 1
+        var maxConnectDistance = 0.2;
+        var connectThreshold = maxConnectDistance * maxConnectDistance;
+
+        for (var i = 0; i < numCandidates; i++)
+        {
+            var otherCollider = candidates[i];
+            var otherPlaceable = otherCollider.gameObject.GetComponent<Placeable>();
+
+            if (otherPlaceable == null)
+            {
+                //Debug.Log("Detected non-placeable collision with " + otherCollider.gameObject.name);
+                continue;
+            }
+
+            var ourPoints = worldConnectionPoints;
+            var theirPoints = otherPlaceable.worldConnectionPoints;
+
+            for(int ourPointIndex = 0; ourPointIndex < ourPoints.Count; ourPointIndex++)
+            {
+                for(int theirPointIndex = 0; theirPointIndex < theirPoints.Count; theirPointIndex++)
+                {
+                    var ourPoint = ourPoints[ourPointIndex];
+                    var theirPoint = theirPoints[theirPointIndex];
+                    
+                    var connectDistance = (theirPoint - ourPoint).sqrMagnitude;
+                    Debug.Log("Distance is " + connectDistance);
+                    if (connectDistance < connectThreshold)
+                    {
+                        attemptConnection(ourPointIndex, otherPlaceable, theirPointIndex);
+                    }
+                }
+            }
+        }
+    }
+
+    private void attemptConnection(int ourPointIndex, Placeable otherPlaceable, int theirPointIndex)
+    {
+        Debug.Log("Attempting connection");
+        if (canConnectAtPoint(ourPointIndex) && otherPlaceable.canConnectAtPoint(theirPointIndex))
+        {
+            makeConnection(ourPointIndex, otherPlaceable, theirPointIndex);
+        }
+    }
+
+    private void makeConnection(int ourPointIndex, Placeable otherPlaceable, int theirPointIndex)
+    {
+        var connectionSuccess = otherPlaceable.receiveConnection(theirPointIndex, this, ourPointIndex);
+        if (connectionSuccess)
+        {
+            receiveConnection(ourPointIndex, otherPlaceable, theirPointIndex);
+        }
+    }
+
+    private bool receiveConnection(int ourPointIndex, Placeable otherPlaceable, int theirPointIndex)
+    {
+        connections[ourPointIndex] = new Connection(otherPlaceable, theirPointIndex);
+        connectionPointObjects[ourPointIndex].SetActive(false);
+        return true;
+    }
+
+    private bool canConnectAtPoint(int ourPointIndex)
+    {
+        return connections[ourPointIndex] == null;
+    }
+
+    private struct Connection
+    {
+       public Placeable Placeable;
+       public int ConnectionPoint;
+
+       public Connection(Placeable placeable, int connectionPoint)
+       {
+           Placeable = placeable;
+           ConnectionPoint = connectionPoint;
+       }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
     }
 }
