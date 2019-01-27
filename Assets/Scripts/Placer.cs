@@ -62,38 +62,34 @@ public class Placer : MonoBehaviour
         return new Tuple<Vector3, Vector3>(ourChosenPoint, theirChosenPoint);
     }
 
-    private Tuple<Vector3, Vector3> getConnectionTransform(Transform source, int sourcePoint, ConnectionPoint targetPoint)
+    private Tuple<Vector3, Vector3> getConnectionTransform(Placeable ourPlaceable, int sourcePoint, ConnectionPoint targetPoint)
     {
         //Debug.Log(gameObject.name + " hit a placeable");
-        var ourPlaceable = placeablePrefab.GetComponent<Placeable>();
         //var theirPoint = target.worldConnectionPoints[targetPoint];
         var theirPoint = new Vector3(targetPoint.Point.x, targetPoint.Point.y, 0);
         var theirCenterPoint = targetPoint.Owner.worldCenterPoint;
         
-        var ourPoint = ourPlaceable.getConnectionPointInWorld(sourcePoint, source);
-        var ourCenterPoint = ourPlaceable.getCenterPointInWorld(source);
+        var ourPoint = ourPlaceable.worldConnectionPoints[sourcePoint];
+        var ourCenterPoint = ourPlaceable.worldCenterPoint;
         
-        var transformToShapeCenterVector = ourCenterPoint - source.position;
+        var transformToShapeCenterVector = ourCenterPoint - ourPlaceable.transform.position;
 
         //Getting vectors from the center of the shape to the connection points
         //Rotating to set the vectors to be facing opposite
         var targetRotationVector = -(theirPoint - theirCenterPoint);
         var shapeCenterToPointVector = ourPoint - ourCenterPoint;
-        var transformToPointVector = transformToShapeCenterVector + shapeCenterToPointVector;
             
-        //var rotationAngle = Vector3.SignedAngle(ourLocalVector, targetRotationVector, new Vector3(0, 0, 1));
         var rotation = Quaternion.FromToRotation( shapeCenterToPointVector, targetRotationVector);
-        //var rotation = Quaternion.identity;
 
-        var matrix = Matrix4x4.Rotate(Quaternion.identity);//rotation);
+        var matrix = Matrix4x4.Rotate(rotation);
 
         //var rotatedOurPoint = matrix.MultiplyPoint(ourPoint);
         //var translation = theirPoint - rotatedOurPoint;
-        var offsetFromTargetPointVector = matrix.MultiplyVector( transformToPointVector );
+        var offsetFromTargetPointVector = matrix.MultiplyVector( ourPoint - ourPlaceable.transform.position );
         //We need to add the vectors to move to the center point, then to the connection point.
-        var targetPosition = theirPoint;
+        var targetPosition = theirPoint - offsetFromTargetPointVector;
         
-        return new Tuple<Vector3, Vector3>(new Vector3(0,0,0), targetPosition);//rotation.eulerAngles, targetPosition);
+        return new Tuple<Vector3, Vector3>(rotation.eulerAngles, targetPosition);//rotation.eulerAngles, targetPosition);
         
     }
 
@@ -145,7 +141,8 @@ public class Placer : MonoBehaviour
 
         var targetConnectionPoint = closestConnectionPoint();
         var shadowPlaceable = getShadowPlaceable();
-        var linearTransform = getConnectionTransform(shadowPlaceable.transform, selectedPoint, targetConnectionPoint);
+        var ourPlaceable = shadowPlaceable.GetComponent<Placeable>();
+        var linearTransform = getConnectionTransform(ourPlaceable, selectedPoint, targetConnectionPoint);
         
         shadowPlaceable.transform.Rotate(linearTransform.Item1);
         shadowPlaceable.transform.position = linearTransform.Item2;

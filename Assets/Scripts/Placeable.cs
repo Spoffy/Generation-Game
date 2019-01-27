@@ -20,6 +20,8 @@ public class Placeable : MonoBehaviour, IPointerDownHandler
     
     public bool isGhosted = false;
 
+    private SpriteRenderer spriteRenderer;
+
     public Placeable()
     {
         
@@ -27,6 +29,7 @@ public class Placeable : MonoBehaviour, IPointerDownHandler
 
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         List<Vector2> newConnectionPoints = new List<Vector2>();
         Vector3 size = GetComponent<SpriteRenderer>().sprite.bounds.size;
         foreach (var point in localConnectionPoints)
@@ -38,8 +41,7 @@ public class Placeable : MonoBehaviour, IPointerDownHandler
         centerPoint = new Vector2(centerPoint.x * size.x, centerPoint.y * size.y);
         connections = new Connection?[localConnectionPoints.Count];
         connectionPointObjects = new GameObject[localConnectionPoints.Count];
-
-        Debug.Log(GetComponent<SpriteRenderer>().bounds);
+        
         var connectionPoints = worldConnectionPoints;
         for(var i = 0; i < connectionPoints.Count; i++) 
         {
@@ -68,16 +70,6 @@ public class Placeable : MonoBehaviour, IPointerDownHandler
     public Vector3 worldCenterPoint
     {
         get { return transform.localToWorldMatrix.MultiplyPoint(centerPoint); }
-    }
-
-    public Vector3 getConnectionPointInWorld(int connectionPointIndex, Transform theirTransform)
-    {
-        return theirTransform.localToWorldMatrix.MultiplyPoint(localConnectionPoints[connectionPointIndex]);
-    }
-
-    public Vector3 getCenterPointInWorld(Transform theirTransform)
-    {
-        return theirTransform.localToWorldMatrix.MultiplyPoint(centerPoint);
     }
 
     public Tuple<Vector3, int> closestPointTo(Vector3 point)

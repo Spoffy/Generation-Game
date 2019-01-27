@@ -106,7 +106,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 3}
+  m_Size: {x: 4, y: 4}
   m_EdgeRadius: 0
 --- !u!50 &8036518051057714685
 Rigidbody2D:
@@ -148,3 +148,4 @@ MonoBehaviour:
   - {x: 0, y: -0.5}
   connectionPointPrefab: {fileID: 5654373599425664040, guid: ae5bd9b9858a9ac11ac5d49ada599322,
     type: 3}
+  isGhosted: 0
