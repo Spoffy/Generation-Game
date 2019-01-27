@@ -16,7 +16,6 @@ public class ResourceStorage : MonoBehaviour, ITickable
     // Wipe the storage every tick
     public void Tick()
     {
-        Debug.Log("Storage Ticked");
         var keys = new List<ResourceType>();
         keys.AddRange(resources.Keys);
         foreach(var resource in keys)

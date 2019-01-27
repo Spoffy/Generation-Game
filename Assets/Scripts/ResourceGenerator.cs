@@ -19,7 +19,6 @@ public class ResourceGenerator : MonoBehaviour, ITickable
 
     public void Tick()
     {
-        Debug.Log("Generator ticked");
         var storage = GetComponent<ResourceStorage>();
         var placeable = GetComponent<Placeable>();
         foreach (var pair in resourceGeneration)

@@ -182,8 +182,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceFalloff:
-    resourceTypes: 00000000
+    resourceTypes: 0000000001000000
     resourceQuantities:
+    - 0.666
     - 0.666
 --- !u!114 &5513834111300824666
 MonoBehaviour:
