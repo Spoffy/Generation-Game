@@ -26,6 +26,7 @@ public class PlacementButton : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        Debug.Log("Drag end");
         placer.place();
         placer.IsInPlacementMode = false;
     }

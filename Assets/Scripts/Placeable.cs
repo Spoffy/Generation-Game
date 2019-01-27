@@ -17,6 +17,8 @@ public class Placeable : MonoBehaviour, IPointerDownHandler
     private GameObject[] connectionPointObjects;
 
     private bool shouldConnect = false;
+    
+    public bool isGhosted = false;
 
     public Placeable()
     {
@@ -43,6 +45,7 @@ public class Placeable : MonoBehaviour, IPointerDownHandler
         {
             connectionPointObjects[i] = Instantiate(connectionPointPrefab, connectionPoints[i], Quaternion.identity, transform);
         }
+        Instantiate(connectionPointPrefab, worldCenterPoint, Quaternion.identity, transform);
     }
 
     void Update()
