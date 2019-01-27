@@ -17,6 +17,8 @@ public class QuantityOverlay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var canvas = GetComponentInChildren<Canvas>();
+        canvas.gameObject.transform.rotation = Quaternion.identity;
         var textOutput = GetComponentInChildren<Text>();
         if (textOutput)
         {

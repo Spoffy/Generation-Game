@@ -181,6 +181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0867ca4bde01cc128cd5f4c815d506d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resourceFalloff:
+    resourceTypes: 00000000
+    resourceQuantities:
+    - 0.666
 --- !u!114 &5513834111300824666
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -36,7 +36,8 @@ public class ResourceConduit : MonoBehaviour, ITickable
         
         foreach(var resourcePair in sourceStorage.resources)
         {
-            storage.resources[resourcePair.Key] = resourcePair.Value;
+            var falloff = resourceFalloff[resourcePair.Key];
+            storage.resources[resourcePair.Key] += resourcePair.Value * falloff;
         }
 
         foreach (var conduit in ResourceConduit.FindConnectedTo(GetComponent<Placeable>()))
