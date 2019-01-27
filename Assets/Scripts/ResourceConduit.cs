@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Placeable))]
 [RequireComponent(typeof(ResourceStorage))]
-public class ResourceConduit : MonoBehaviour, ITickable
+public class ResourceConduit : ResourceReceiver, ITickable
 {
     public const int CONDUIT_TICK_PRIORITY = 5;
     public ResourceDictionary resourceFalloff = new ResourceDictionary();
@@ -26,7 +26,7 @@ public class ResourceConduit : MonoBehaviour, ITickable
         flowIteration = 0;
     }
 
-    public void flowFrom(ResourceStorage sourceStorage, int sourceFlowIteration)
+    public override void flowFrom(ResourceStorage sourceStorage, int sourceFlowIteration)
     {
         if (sourceFlowIteration <= flowIteration)
         {
@@ -40,25 +40,10 @@ public class ResourceConduit : MonoBehaviour, ITickable
             storage.resources[resourcePair.Key] += resourcePair.Value * falloff;
         }
 
-        foreach (var conduit in ResourceConduit.FindConnectedTo(GetComponent<Placeable>()))
+        foreach (var conduit in Placeable.FindConnectedTo<ResourceReceiver>(GetComponent<Placeable>()))
         {
             conduit.flowFrom(storage, flowIteration);
         }
         
-    }
-
-    public static List<ResourceConduit> FindConnectedTo(Placeable source)
-    {
-        var results = new List<ResourceConduit>();
-        foreach (var connectedPlaceable in source.connected)
-        {
-            var conduit = connectedPlaceable.GetComponent<ResourceConduit>();
-            if (conduit != null)
-            {
-                results.Add(conduit);
-            }
-        }
-
-        return results;
     }
 }

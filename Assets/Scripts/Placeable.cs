@@ -207,4 +207,19 @@ public class Placeable : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
     }
+    
+    public static List<ConnectionType> FindConnectedTo<ConnectionType>(Placeable source)
+    {
+        var results = new List<ConnectionType>();
+        foreach (var connectedPlaceable in source.connected)
+        {
+            var item = connectedPlaceable.GetComponent<ConnectionType>();
+            if (item != null)
+            {
+                results.Add(item);
+            }
+        }
+
+        return results;
+    }
 }

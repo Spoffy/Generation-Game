@@ -30,7 +30,7 @@ public class ResourceGenerator : MonoBehaviour, ITickable
 
         var placeable = GetComponent<Placeable>();
 
-        foreach (var conduit in ResourceConduit.FindConnectedTo(placeable))
+        foreach (var conduit in Placeable.FindConnectedTo<ResourceReceiver>(placeable))
         {
             conduit.flowFrom(storage, Ticker.FindTicker().NextFlow());
         }
