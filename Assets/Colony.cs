@@ -29,8 +29,7 @@ public class Colony : MonoBehaviour, ITickable
         foreach (var constructorObject in constructorObjects)
         {
             Debug.Log("Constructor found");
-            var isFunctioning = !constructorObject.GetComponent<ResourceConsumer>() || constructorObject.GetComponent<ResourceConsumer>().functioning;
-            if (isFunctioning)
+            if (ResourceConsumer.isFunctioning(constructorObject))
             {
                 var constructorStorage = constructorObject.GetComponent<ResourceStorage>();
                 resources[ResourceType.Materials] += constructorStorage.resources[ResourceType.Materials];

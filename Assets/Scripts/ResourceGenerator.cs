@@ -19,7 +19,7 @@ public class ResourceGenerator : MonoBehaviour, ITickable
 
     public void Tick()
     {
-        if (ResourceConsumer.isFunctioning(gameObject))
+        if (!ResourceConsumer.isFunctioning(gameObject))
         {
             return;
         }

@@ -38,7 +38,7 @@ public class ResourceConduit : ResourceReceiver, ITickable
         var newQuantity = quantity * falloff;
         storage.resources[resourceType] += newQuantity;
         
-        if (ResourceConsumer.isFunctioning(gameObject))
+        if (!ResourceConsumer.isFunctioning(gameObject))
         {
             return;
         }
