@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 905351297093095849}
   - component: {fileID: 8765014228593393440}
   - component: {fileID: 8765014228593393441}
+  - component: {fileID: 4935096646910502822}
   m_Layer: 0
   m_Name: Power Plant
   m_TagString: Untagged
@@ -260,8 +261,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceGeneration:
-    resourceTypes: 0000000000000000
-    resourceQuantities: []
+    resourceTypes: 00000000
+    resourceQuantities:
+    - 3
+--- !u!114 &4935096646910502822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905351297093095850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61d47cfd4e030dcea6a8df697089b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 0
 --- !u!1 &7618351904000671231
 GameObject:
   m_ObjectHideFlags: 0

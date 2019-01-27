@@ -15,16 +15,6 @@ public class ResourceGenerator : MonoBehaviour, ITickable
         Ticker.FindTicker().Register(this, GENERATOR_TICK_PRIORITY);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        var textOutput = GetComponentInChildren<Text>();
-        if (textOutput)
-        {
-            textOutput.text = string.Format("{0:0}", resourceGeneration[ResourceType.Power]);
-        }
-    }
-
     public void Tick()
     {
         Debug.Log("Generator ticked");

@@ -15,16 +15,6 @@ public class ResourceConduit : MonoBehaviour, ITickable
         storage = GetComponent<ResourceStorage>();
         Ticker.FindTicker().Register(this, CONDUIT_TICK_PRIORITY);
     }
-    
-    void Update()
-    {
-        var textOutput = GetComponentInChildren<Text>();
-        if (textOutput)
-        {
-            var power = storage.resources[ResourceType.Power];
-            textOutput.text = string.Format("{0:0}", power);
-        }
-    }
 
     public void Tick()
     {
