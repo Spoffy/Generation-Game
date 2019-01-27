@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd4d0b3e360132508106741e1ee3290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placeableName: Mine
   centerPoint: {x: 0, y: 0}
   localConnectionPoints:
   - {x: 0, y: 0.5}

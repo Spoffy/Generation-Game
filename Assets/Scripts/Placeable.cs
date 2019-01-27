@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Placeable : MonoBehaviour, IPointerDownHandler
 {
+    public string placeableName = "Default";
     public Vector2 centerPoint;
 
     public List<Vector2> localConnectionPoints = new List<Vector2>();

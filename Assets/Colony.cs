@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Colony : MonoBehaviour, ITickable
@@ -25,6 +27,11 @@ public class Colony : MonoBehaviour, ITickable
     {
         //materialsText.text = string.Format("{0}",resources[ResourceType.Materials]);
         peopleText.text = string.Format("{0}", resources[ResourceType.People]);
+
+        if (Input.GetKeyDown("r"))
+        {
+            SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+        }
     }
 
     public void Tick()
@@ -48,5 +55,15 @@ public class Colony : MonoBehaviour, ITickable
                 resources[ResourceType.People] += houseStorage.resources[ResourceType.People];
             }
         }
+
+        if (resources[ResourceType.People] > goalQuantity)
+        {
+            win();
+        }
+    }
+
+    private void win()
+    {
+        
     }
 }
