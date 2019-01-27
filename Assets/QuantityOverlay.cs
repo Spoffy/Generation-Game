@@ -10,11 +10,20 @@ public class QuantityOverlay : MonoBehaviour
     public Text materialDisplay;
     public Text foodDisplay;
     public Text peopleDisplay;
-    private ResourceStorage storage;
+    private ResourceDictionary resources;
     // Start is called before the first frame update
     void Start()
     {
-        storage = GetComponent<ResourceStorage>();
+        var generator = GetComponent<ResourceGenerator>();
+        var storage = GetComponent<ResourceStorage>();
+        if (generator)
+        {
+            resources = generator.resourceGeneration;
+        }
+        else
+        {
+            resources = storage.resources;
+        }
     }
 
     // Update is called once per frame
@@ -26,22 +35,22 @@ public class QuantityOverlay : MonoBehaviour
 
         if (powerDisplay)
         {
-            powerDisplay.text = string.Format("{0:#0}", storage.resources[ResourceType.Power]);
+            powerDisplay.text = string.Format("{0:#0}", resources[ResourceType.Power]);
         }
         
         if (materialDisplay)
         {
-            materialDisplay.text = string.Format("{0:#0}", storage.resources[ResourceType.Materials]);
+            materialDisplay.text = string.Format("{0:#0}", resources[ResourceType.Materials]);
         }
         
         if (foodDisplay)
         {
-            foodDisplay.text = string.Format("{0:#0}", storage.resources[ResourceType.Food]);
+            foodDisplay.text = string.Format("{0:#0}", resources[ResourceType.Food]);
         }
         
         if (peopleDisplay)
         {
-            peopleDisplay.text = string.Format("{0:#0}", storage.resources[ResourceType.People]);
+            peopleDisplay.text = string.Format("{0:#0}", resources[ResourceType.People]);
         }
     }
 }

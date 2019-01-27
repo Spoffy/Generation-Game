@@ -415,10 +415,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceFalloff:
-    resourceTypes: 0000000001000000
+    resourceTypes: 00000000010000000200000003000000
     resourceQuantities:
-    - 0.666
-    - 0.666
+    - 0.6
+    - 0.6
+    - 0.6
+    - 0.6
 --- !u!114 &5513834111300824666
 MonoBehaviour:
   m_ObjectHideFlags: 0

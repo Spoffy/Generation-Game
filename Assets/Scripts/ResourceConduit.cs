@@ -34,9 +34,9 @@ public class ResourceConduit : ResourceReceiver, ITickable
         }
         flowIteration = sourceFlowIteration;
         
+        storage.resources[resourceType] += quantity;
         var falloff = resourceFalloff[resourceType];
-        var newQuantity = quantity * falloff;
-        storage.resources[resourceType] += newQuantity;
+        var nextQuantity = quantity * falloff;
         
         if (!ResourceConsumer.isFunctioning(gameObject))
         {
@@ -45,7 +45,7 @@ public class ResourceConduit : ResourceReceiver, ITickable
 
         foreach (var conduit in Placeable.FindConnectedTo<ResourceReceiver>(GetComponent<Placeable>()))
         {
-            conduit.flowFrom(resourceType, newQuantity, flowIteration);
+            conduit.flowFrom(resourceType, nextQuantity, flowIteration);
         }
         
     }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Placeable))]
 [RequireComponent(typeof(ResourceStorage))]
-public class ResourceGenerator : MonoBehaviour, ITickable
+public class ResourceGenerator : ResourceReceiver, ITickable
 {
     public const int GENERATOR_TICK_PRIORITY = 1;
     public ResourceDictionary resourceGeneration = new ResourceDictionary();
@@ -36,5 +36,9 @@ public class ResourceGenerator : MonoBehaviour, ITickable
         }
         
 
+    }
+
+    public override void flowFrom(ResourceType resourceType, float quantity, int sourceFlowIteration)
+    {
     }
 }

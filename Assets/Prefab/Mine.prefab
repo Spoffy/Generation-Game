@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 6354961219829893560}
   - component: {fileID: 7344862809639342399}
   - component: {fileID: 6604117178081817451}
+  - component: {fileID: 8059945687427504060}
   m_Layer: 0
   m_Name: Mine
   m_TagString: Untagged
@@ -296,8 +297,10 @@ MonoBehaviour:
   functioning: 1
   fed: 0
   resourceConsumption:
-    resourceTypes: 
-    resourceQuantities: []
+    resourceTypes: 0000000003000000
+    resourceQuantities:
+    - 1.5
+    - 2
   shortages:
     resourceTypes: 
     resourceQuantities: []
@@ -311,6 +314,18 @@ MonoBehaviour:
   foodAlert: {fileID: 0}
   hasPeopleAlert: 0
   peopleAlert: {fileID: 0}
+--- !u!114 &8059945687427504060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3243358892120991539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6729e88644f2d2110a606927ed601924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5200284546619460454
 GameObject:
   m_ObjectHideFlags: 0
