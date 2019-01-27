@@ -47,7 +47,8 @@ public class Placeable : MonoBehaviour, IPointerDownHandler
         {
             connectionPointObjects[i] = Instantiate(connectionPointPrefab, connectionPoints[i], Quaternion.identity, transform);
         }
-        Instantiate(connectionPointPrefab, worldCenterPoint, Quaternion.identity, transform);
+        //Create a center point
+        //Instantiate(connectionPointPrefab, worldCenterPoint, Quaternion.identity, transform);
     }
 
     void Update()
