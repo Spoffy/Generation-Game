@@ -26,7 +26,7 @@ public class ResourceConduit : ResourceReceiver, ITickable
         flowIteration = 0;
     }
 
-    public override void flowFrom(ResourceStorage sourceStorage, int sourceFlowIteration)
+    public override void flowFrom(ResourceType resourceType, float quantity, int sourceFlowIteration)
     {
         if (sourceFlowIteration <= flowIteration)
         {
@@ -34,15 +34,13 @@ public class ResourceConduit : ResourceReceiver, ITickable
         }
         flowIteration = sourceFlowIteration;
         
-        foreach(var resourcePair in sourceStorage.resources)
-        {
-            var falloff = resourceFalloff[resourcePair.Key];
-            storage.resources[resourcePair.Key] += resourcePair.Value * falloff;
-        }
+        var falloff = resourceFalloff[resourceType];
+        var newQuantity = quantity * falloff;
+        storage.resources[resourceType] += newQuantity;
 
         foreach (var conduit in Placeable.FindConnectedTo<ResourceReceiver>(GetComponent<Placeable>()))
         {
-            conduit.flowFrom(storage, flowIteration);
+            conduit.flowFrom(resourceType, newQuantity, flowIteration);
         }
         
     }

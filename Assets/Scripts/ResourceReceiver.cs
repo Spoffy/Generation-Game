@@ -5,5 +5,5 @@ using UnityEngine;
 [RequireComponent(typeof(ResourceStorage))]
 public abstract class ResourceReceiver : MonoBehaviour
 {
-   public abstract void flowFrom(ResourceStorage sourceStorage, int sourceFlowIteration);
+   public abstract void flowFrom(ResourceType resourceType, float quantity, int sourceFlowIteration);
 }

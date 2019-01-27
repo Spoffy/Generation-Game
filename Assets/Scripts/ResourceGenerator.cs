@@ -21,18 +21,16 @@ public class ResourceGenerator : MonoBehaviour, ITickable
     {
         Debug.Log("Generator ticked");
         var storage = GetComponent<ResourceStorage>();
+        var placeable = GetComponent<Placeable>();
         foreach (var pair in resourceGeneration)
         {
             storage.resources[pair.Key] = pair.Value;
+            foreach (var conduit in Placeable.FindConnectedTo<ResourceReceiver>(placeable))
+            {
+                conduit.flowFrom(pair.Key, pair.Value, Ticker.FindTicker().NextFlow());
+            }
         }
         
-        Debug.Log("Generator has " + storage.resources[ResourceType.Power]);
 
-        var placeable = GetComponent<Placeable>();
-
-        foreach (var conduit in Placeable.FindConnectedTo<ResourceReceiver>(placeable))
-        {
-            conduit.flowFrom(storage, Ticker.FindTicker().NextFlow());
-        }
     }
 }

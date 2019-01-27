@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ConnectionPoint
   - Ticker
+  - Constructor
   layers:
   - Default
   - TransparentFX

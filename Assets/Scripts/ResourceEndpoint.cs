@@ -12,12 +12,8 @@ public class ResourceEndpoint : ResourceReceiver
         storage = GetComponent<ResourceStorage>();
     }
 
-    public override void flowFrom(ResourceStorage sourceStorage, int sourceFlowIteration)
+    public override void flowFrom(ResourceType resourceType, float quantity, int sourceFlowIteration)
     {
-        foreach (var resourcePair in sourceStorage.resources)
-        {
-            storage.resources[resourcePair.Key] += resourcePair.Value;
-        }
-        
+        storage.resources[resourceType] += quantity;
     }
 }
