@@ -37,6 +37,11 @@ public class ResourceConduit : ResourceReceiver, ITickable
         var falloff = resourceFalloff[resourceType];
         var newQuantity = quantity * falloff;
         storage.resources[resourceType] += newQuantity;
+        
+        if (ResourceConsumer.isFunctioning(gameObject))
+        {
+            return;
+        }
 
         foreach (var conduit in Placeable.FindConnectedTo<ResourceReceiver>(GetComponent<Placeable>()))
         {

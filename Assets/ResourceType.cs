@@ -4,5 +4,7 @@ using System;
 public enum ResourceType
 {
     Power,
-    Materials
+    Materials,
+    Food,
+    People
 }

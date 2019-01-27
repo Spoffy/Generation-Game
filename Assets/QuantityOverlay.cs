@@ -6,7 +6,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(ResourceStorage))]
 public class QuantityOverlay : MonoBehaviour
 {
-    public ResourceType resourceType;
+    public Text powerDisplay;
+    public Text materialDisplay;
+    public Text foodDisplay;
+    public Text peopleDisplay;
     private ResourceStorage storage;
     // Start is called before the first frame update
     void Start()
@@ -17,13 +20,28 @@ public class QuantityOverlay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Keep it upright!
         var canvas = GetComponentInChildren<Canvas>();
         canvas.gameObject.transform.rotation = Quaternion.identity;
-        var textOutput = GetComponentInChildren<Text>();
-        if (textOutput)
+
+        if (powerDisplay)
         {
-            var quantity = storage.resources[resourceType];
-            textOutput.text = string.Format("{0:0}", quantity);
-        }   
+            powerDisplay.text = string.Format("{0:#0}", storage.resources[ResourceType.Power]);
+        }
+        
+        if (materialDisplay)
+        {
+            materialDisplay.text = string.Format("{0:#0}", storage.resources[ResourceType.Materials]);
+        }
+        
+        if (foodDisplay)
+        {
+            foodDisplay.text = string.Format("{0:#0}", storage.resources[ResourceType.Food]);
+        }
+        
+        if (peopleDisplay)
+        {
+            peopleDisplay.text = string.Format("{0:#0}", storage.resources[ResourceType.People]);
+        }
     }
 }

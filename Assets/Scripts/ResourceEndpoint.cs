@@ -15,5 +15,10 @@ public class ResourceEndpoint : ResourceReceiver
     public override void flowFrom(ResourceType resourceType, float quantity, int sourceFlowIteration)
     {
         storage.resources[resourceType] += quantity;
+        
+        if(!ResourceConsumer.isFunctioning(gameObject))
+        {
+            return;
+        }
     }
 }

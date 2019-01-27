@@ -19,6 +19,11 @@ public class ResourceGenerator : MonoBehaviour, ITickable
 
     public void Tick()
     {
+        if (ResourceConsumer.isFunctioning(gameObject))
+        {
+            return;
+        }
+        
         var storage = GetComponent<ResourceStorage>();
         var placeable = GetComponent<Placeable>();
         foreach (var pair in resourceGeneration)

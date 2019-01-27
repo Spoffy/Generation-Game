@@ -34,4 +34,13 @@ public class ResourceDictionary : Dictionary<ResourceType, float>
         }
     }
 
+    public void zero()
+    {
+        var keys = new List<ResourceType>(Keys);
+        foreach(var key in keys)
+        {
+            this[key] = 0;
+        }
+    }
+
 }
