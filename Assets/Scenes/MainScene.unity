@@ -302,6 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventSystem: {fileID: 1216193370}
   camera: {fileID: 235546119}
+  desiredDeltas: 3
 --- !u!1 &413725996
 GameObject:
   m_ObjectHideFlags: 0
