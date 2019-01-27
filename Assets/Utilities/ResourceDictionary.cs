@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -22,6 +23,14 @@ public class ResourceDictionary : Dictionary<ResourceType, float>
         for (var i = 0; i < resourceTypes.Count; i++)
         {
             Add(resourceTypes[i], resourceQuantities[i]);
+        }
+
+        foreach (var resourceType in (ResourceType[]) Enum.GetValues(typeof(ResourceType)))
+        {
+            if (!ContainsKey(resourceType))
+            {
+                Add(resourceType, 0);
+            }
         }
     }
 

@@ -27,6 +27,23 @@ public class Placeable : MonoBehaviour, IPointerDownHandler
         
     }
 
+    public List<Placeable> connected
+    {
+        get
+        {
+            var results = new List<Placeable>(connections.Length);
+            foreach (var connection in connections)
+            {
+                if (connection.HasValue)
+                {
+                    results.Add(connection.Value.Placeable);
+                }
+            }
+
+            return results;
+        }
+    }
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -175,7 +192,7 @@ public class Placeable : MonoBehaviour, IPointerDownHandler
         return connections[ourPointIndex] == null;
     }
 
-    private struct Connection
+    public struct Connection
     {
        public Placeable Placeable;
        public int ConnectionPoint;

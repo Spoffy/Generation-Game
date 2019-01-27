@@ -8,6 +8,7 @@ public class Ticker : MonoBehaviour
     private int tickCount = 0;
     
     public const int TICK_PRIORITY_LEVELS = 10;
+    [SerializeField]
     public List<ITickable>[] tickables = new List<ITickable>[TICK_PRIORITY_LEVELS];
 
     public Ticker()
