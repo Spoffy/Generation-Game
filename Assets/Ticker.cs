@@ -7,6 +7,7 @@ public class Ticker : MonoBehaviour
     public int tickRate = 1;
     private int tickCount = 0;
     
+    
     public const int TICK_PRIORITY_LEVELS = 10;
     [SerializeField]
     public List<ITickable>[] tickables = new List<ITickable>[TICK_PRIORITY_LEVELS];
@@ -45,6 +46,14 @@ public class Ticker : MonoBehaviour
     {
         priority = priority < 0 ? TICK_PRIORITY_LEVELS - 1 : priority;
         tickables[priority].Add(tickable);
+    }
+    
+    private int flowTracker = 0;
+
+    public int NextFlow()
+    {
+        flowTracker += 1;
+        return flowTracker;
     }
 }
 

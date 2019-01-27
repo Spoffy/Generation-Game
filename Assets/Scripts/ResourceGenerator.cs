@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+[RequireComponent(typeof(Placeable))]
 [RequireComponent(typeof(ResourceStorage))]
 public class ResourceGenerator : MonoBehaviour, ITickable
 {
@@ -28,13 +30,9 @@ public class ResourceGenerator : MonoBehaviour, ITickable
 
         var placeable = GetComponent<Placeable>();
 
-        foreach (var connectedPlaceable in placeable.connected)
+        foreach (var conduit in ResourceConduit.FindConnectedTo(placeable))
         {
-            var conduit = connectedPlaceable.GetComponent<ResourceConduit>();
-            if (conduit != null)
-            {
-                conduit.flowFrom(storage);
-            }
+            conduit.flowFrom(storage, Ticker.FindTicker().NextFlow());
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Placeable))]
 public class ResourceStorage : MonoBehaviour, ITickable
 {
     public const int STORAGE_TICK_PRIORITY = 0;
