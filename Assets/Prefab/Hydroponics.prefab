@@ -245,6 +245,7 @@ GameObject:
   - component: {fileID: 8709870022361067185}
   - component: {fileID: 5086557366514568421}
   - component: {fileID: 6888000038359132702}
+  - component: {fileID: 2681569443601669282}
   m_Layer: 0
   m_Name: Hydroponics
   m_TagString: Untagged
@@ -430,7 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerDisplay: {fileID: 8874543821404408719}
   materialDisplay: {fileID: 3155384093903155171}
-  foodDisplay: {fileID: 8874543821404408719}
+  foodDisplay: {fileID: 489643892969066241}
   peopleDisplay: {fileID: 7435457100396388700}
 --- !u!114 &5086557366514568421
 MonoBehaviour:
@@ -478,6 +479,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   filterList: 02000000
+--- !u!114 &2681569443601669282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3473160241420015805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3612c657163e4cd9d96528859406a197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingToHelpWith: {fileID: 3473160241420015806}
 --- !u!1 &3987718820128722093
 GameObject:
   m_ObjectHideFlags: 0

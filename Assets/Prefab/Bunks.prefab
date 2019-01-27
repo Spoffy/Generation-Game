@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 2844005267409169935}
   - component: {fileID: 1819269403281951835}
   - component: {fileID: 6291775351045599532}
+  - component: {fileID: 330650313092750596}
   m_Layer: 0
   m_Name: Bunks
   m_TagString: House
@@ -641,7 +642,7 @@ MonoBehaviour:
     resourceTypes: 
     resourceQuantities: []
   hasGeneralAlert: 1
-  generalAlert: {fileID: 0}
+  generalAlert: {fileID: 4711151398423025764}
   hasPowerAlert: 1
   powerAlert: {fileID: 8279858113665283471}
   hasMaterialAlert: 1
@@ -663,6 +664,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   filterList: 03000000
+--- !u!114 &330650313092750596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8042135689770129411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3612c657163e4cd9d96528859406a197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingToHelpWith: {fileID: 8042135689770129408}
 --- !u!1 &8267758320693478635
 GameObject:
   m_ObjectHideFlags: 0

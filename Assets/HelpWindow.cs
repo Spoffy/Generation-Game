@@ -37,6 +37,7 @@ public class HelpWindow : MonoBehaviour
     private float? getProduceValue(GameObject obj, ResourceType type)
     {
         var resourceComponent = obj.GetComponent<ResourceGenerator>();
+        if (!resourceComponent) return null;
         var index = resourceComponent.resourceGeneration.resourceTypes.IndexOf(type);
         float? value = null;
         if (index >= 0)
@@ -50,6 +51,7 @@ public class HelpWindow : MonoBehaviour
     private float? getConsumeValue(GameObject obj, ResourceType type)
     {
         var resourceComponent = obj.GetComponent<ResourceConsumer>();
+        if (!resourceComponent) return null;
         var index = resourceComponent.resourceConsumption.resourceTypes.IndexOf(type);
         float? value = null;
         if (index >= 0)

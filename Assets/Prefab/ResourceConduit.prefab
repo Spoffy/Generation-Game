@@ -249,6 +249,7 @@ GameObject:
   - component: {fileID: 3847226491069104288}
   - component: {fileID: 5513834111300824666}
   - component: {fileID: 9187115909588610054}
+  - component: {fileID: 7101949477632016303}
   m_Layer: 0
   m_Name: ResourceConduit
   m_TagString: Untagged
@@ -387,6 +388,7 @@ MonoBehaviour:
   - {x: -0.5, y: 0}
   connectionPointPrefab: {fileID: 5654373599425664040, guid: ae5bd9b9858a9ac11ac5d49ada599322,
     type: 3}
+  shouldConnect: 0
   isGhosted: 0
 --- !u!114 &4555110108196856951
 MonoBehaviour:
@@ -418,10 +420,10 @@ MonoBehaviour:
   resourceFalloff:
     resourceTypes: 00000000010000000200000003000000
     resourceQuantities:
-    - 0.6
-    - 0.6
-    - 0.6
-    - 0.6
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
 --- !u!114 &5513834111300824666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +472,19 @@ MonoBehaviour:
   foodAlert: {fileID: 1391089021060200086}
   hasPeopleAlert: 1
   peopleAlert: {fileID: 7967791163104614724}
+--- !u!114 &7101949477632016303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4003964389749824007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3612c657163e4cd9d96528859406a197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingToHelpWith: {fileID: 4003964389749824004}
 --- !u!1 &4496880093725061929
 GameObject:
   m_ObjectHideFlags: 0

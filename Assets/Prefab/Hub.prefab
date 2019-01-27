@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 3661303880989083869}
   - component: {fileID: 1085642643800772698}
   - component: {fileID: 776129047429076647}
+  - component: {fileID: 6836229840328909201}
   m_Layer: 0
   m_Name: Hub
   m_TagString: Untagged
@@ -256,6 +257,7 @@ MonoBehaviour:
   - {x: -0.5, y: 0}
   connectionPointPrefab: {fileID: 5654373599425664040, guid: ae5bd9b9858a9ac11ac5d49ada599322,
     type: 3}
+  shouldConnect: 0
   isGhosted: 0
 --- !u!114 &7205879710411861668
 MonoBehaviour:
@@ -269,7 +271,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3612c657163e4cd9d96528859406a197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  helpWindow: {fileID: 0}
   buildingToHelpWith: {fileID: 0}
 --- !u!114 &3661303880989083868
 MonoBehaviour:
@@ -299,11 +300,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceGeneration:
-    resourceTypes: 000000000100000003000000
+    resourceTypes: 00000000010000000300000002000000
     resourceQuantities:
     - 3
     - 3
     - 1
+    - 4
 --- !u!114 &1085642643800772698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,6 +352,19 @@ MonoBehaviour:
   foodAlert: {fileID: 0}
   hasPeopleAlert: 0
   peopleAlert: {fileID: 0}
+--- !u!114 &6836229840328909201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187146552300070486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3612c657163e4cd9d96528859406a197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingToHelpWith: {fileID: 5187146552300070485}
 --- !u!1 &5621797141189431160
 GameObject:
   m_ObjectHideFlags: 0
