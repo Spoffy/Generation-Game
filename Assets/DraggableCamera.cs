@@ -8,6 +8,7 @@ public class DraggableCamera : MonoBehaviour
 {
     public EventSystem eventSystem;
     public Camera camera;
+    public int desiredDeltas = 3;
 
     private PointerEventData pointerEventData;
     private Vector3? startingCameraPosition;
@@ -15,6 +16,7 @@ public class DraggableCamera : MonoBehaviour
     private Vector3? startingWorldPosition;
     private Vector3 cameraDelta;
     private Vector3 worldDelta;
+    private int deltaVectorCount = 0;
     private Vector3? deltaVector;
     
     void Update()
@@ -46,15 +48,21 @@ public class DraggableCamera : MonoBehaviour
         {
             endDrag();
         }
-
+        
         if(startingScreenPosition != null && deltaVector == null)
         {
-            if (Input.mousePosition != startingScreenPosition)
+            if (Input.mousePosition != startingScreenPosition && deltaVectorCount < desiredDeltas)
             {
                 var changeInScreen = Input.mousePosition - startingScreenPosition.Value;
                 var changeInWorld = camera.ScreenToWorldPoint(Input.mousePosition) - startingWorldPosition.Value;
-                float x = -changeInWorld.x / changeInScreen.x;
-                var y = -changeInWorld.y / changeInScreen.y;
+                cameraDelta = cameraDelta + changeInScreen;
+                worldDelta = worldDelta + changeInWorld;
+                deltaVectorCount += 1;
+            } 
+            else if(deltaVectorCount >= desiredDeltas) 
+            {
+                float x = -worldDelta.x / cameraDelta.x;
+                var y = -worldDelta.y / cameraDelta.y;
                 var z = 0;
                 x = float.IsNaN(x) ? 0 : x;
                 y = float.IsNaN(y) ? 0 : y;
@@ -77,6 +85,9 @@ public class DraggableCamera : MonoBehaviour
         startingScreenPosition = null;
         startingCameraPosition = null;
         deltaVector = null;
+        deltaVectorCount = 0;
+        cameraDelta = Vector3.zero;
+        worldDelta = Vector3.zero;
     }
 
     private void beginDrag(Vector3 mousePosition)
