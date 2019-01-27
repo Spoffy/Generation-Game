@@ -17,7 +17,7 @@ public class Placeable : MonoBehaviour, IPointerDownHandler
     private Connection?[] connections;
     private GameObject[] connectionPointObjects;
 
-    private bool shouldConnect = false;
+    public bool shouldConnect = false;
     
     public bool isGhosted = false;
 
@@ -125,8 +125,6 @@ public class Placeable : MonoBehaviour, IPointerDownHandler
         filter.useTriggers = true;
         var numCandidates = collider.OverlapCollider(filter, candidates);
         
-        Debug.Log("Found " + numCandidates + " candidates");
-
         // Distance = 1 + distance to make sure it's > 1
         var maxConnectDistance = 0.2;
         var connectThreshold = maxConnectDistance * maxConnectDistance;
@@ -153,7 +151,6 @@ public class Placeable : MonoBehaviour, IPointerDownHandler
                     var theirPoint = theirPoints[theirPointIndex];
                     
                     var connectDistance = (theirPoint - ourPoint).sqrMagnitude;
-                    Debug.Log("Distance is " + connectDistance);
                     if (connectDistance < connectThreshold)
                     {
                         attemptConnection(ourPointIndex, otherPlaceable, theirPointIndex);

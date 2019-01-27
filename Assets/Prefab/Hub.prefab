@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 5187146552300070443}
   - component: {fileID: 5187146552300070442}
   - component: {fileID: 5187146552300070485}
+  - component: {fileID: 7205879710411861668}
   - component: {fileID: 3661303880989083868}
   - component: {fileID: 3661303880989083869}
   - component: {fileID: 1085642643800772698}
@@ -246,6 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd4d0b3e360132508106741e1ee3290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placeableName: Hub
   centerPoint: {x: 0, y: 0}
   localConnectionPoints:
   - {x: 0, y: 0.5}
@@ -255,6 +257,20 @@ MonoBehaviour:
   connectionPointPrefab: {fileID: 5654373599425664040, guid: ae5bd9b9858a9ac11ac5d49ada599322,
     type: 3}
   isGhosted: 0
+--- !u!114 &7205879710411861668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187146552300070486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3612c657163e4cd9d96528859406a197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  helpWindow: {fileID: 0}
+  buildingToHelpWith: {fileID: 0}
 --- !u!114 &3661303880989083868
 MonoBehaviour:
   m_ObjectHideFlags: 0

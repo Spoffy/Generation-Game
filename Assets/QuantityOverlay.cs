@@ -16,14 +16,7 @@ public class QuantityOverlay : MonoBehaviour
     {
         var generator = GetComponent<ResourceGenerator>();
         var storage = GetComponent<ResourceStorage>();
-        if (generator)
-        {
-            resources = generator.resourceGeneration;
-        }
-        else
-        {
-            resources = storage.resources;
-        }
+        resources = storage.resources;
     }
 
     // Update is called once per frame
