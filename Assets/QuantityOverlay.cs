@@ -35,22 +35,22 @@ public class QuantityOverlay : MonoBehaviour
 
         if (powerDisplay)
         {
-            powerDisplay.text = string.Format("{0:#0}", resources[ResourceType.Power]);
+            powerDisplay.text = string.Format("{0:#0.#}", resources[ResourceType.Power]);
         }
         
         if (materialDisplay)
         {
-            materialDisplay.text = string.Format("{0:#0}", resources[ResourceType.Materials]);
+            materialDisplay.text = string.Format("{0:#0.#}", resources[ResourceType.Materials]);
         }
         
         if (foodDisplay)
         {
-            foodDisplay.text = string.Format("{0:#0}", resources[ResourceType.Food]);
+            foodDisplay.text = string.Format("{0:#0.#}", resources[ResourceType.Food]);
         }
         
         if (peopleDisplay)
         {
-            peopleDisplay.text = string.Format("{0:#0}", resources[ResourceType.People]);
+            peopleDisplay.text = string.Format("{0:#0.#}", resources[ResourceType.People]);
         }
     }
 }

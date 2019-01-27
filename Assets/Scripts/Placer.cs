@@ -191,6 +191,10 @@ public class Placer : MonoBehaviour
             __shadowPlaceableInternal = null;
             var placedObject = shadowPlaceable.GetComponent<Placeable>();
             placedObject.isGhosted = false;
+            foreach (var component in placedObject.GetComponents<Behaviour>())
+            {
+                component.enabled = true;
+            }
             placedObject.connect();
         }
     }

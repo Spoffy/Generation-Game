@@ -100,6 +100,7 @@ public class ResourceConsumer : MonoBehaviour, ITickable
             var amountInStorage = storage.resources[resourcePair.Key];
             if (amountInStorage < amountToConsume)
             {
+                Debug.Log("It begins " + amountInStorage + " " + amountToConsume);
                 fed = false;
                 shortages[resourcePair.Key] = 1;
             }
@@ -110,6 +111,9 @@ public class ResourceConsumer : MonoBehaviour, ITickable
     
     public void Tick()
     {
+        var storage = GetComponent<ResourceStorage>();
+        Debug.Log("" + storage.resources[ResourceType.Power] + " " + storage.resources[ResourceType.Materials] + " " +
+                  storage.resources[ResourceType.People]);
         Consume();
         if (!fed)
         {
